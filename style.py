@@ -1,0 +1,4 @@
+
+OFF_WHITE = 0x7F7F7F
+RED = 0x800000
+BLUE = 0x09B3D4 # Blueish
