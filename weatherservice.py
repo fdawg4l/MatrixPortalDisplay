@@ -32,7 +32,7 @@ icons = OnDiskBitmap('/icons.bmp')
 
 class Weather(label.Metric):
     def __init__(self, matrixportal, x, y, description_style, data_style, group):
-        super().__init__(x, y, description_style, data_style, "F", group, description=False, frequency=3600)
+        super().__init__(x, y, description_style, data_style, "F", group, description=False, frequency=1800)
         self.matrixportal = matrixportal
         self.icon_sprite = TileGrid(
             icons,

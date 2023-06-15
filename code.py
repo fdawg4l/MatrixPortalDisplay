@@ -1,7 +1,6 @@
 from displayio import Group as display_group
 from adafruit_bitmap_font import bitmap_font
 from adafruit_matrixportal.matrixportal import MatrixPortal
-from secrets import secrets
 import gc
 import timeservice
 import weatherservice
@@ -9,7 +8,7 @@ import powerwallservice
 from label import Style
 import style
 
-SPOTIFY_URL = "http://192.168.1.25:5000/spotify"
+gc.collect()
 
 matrixportal = MatrixPortal(height=64, width=64)
 
@@ -47,5 +46,8 @@ root_group.append(services)
 matrixportal.display.show(root_group)
 
 while True:
-    services.update()
-    gc.collect()
+    try:
+        services.update()
+        gc.collect()
+    except Exception as e:
+        print(f"exception {e=}, {type(e)=}")

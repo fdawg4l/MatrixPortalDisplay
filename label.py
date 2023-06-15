@@ -41,7 +41,7 @@ class Metric():
         # Left justified
         self.data.x = x
         # height of the description + description y
-        self.data.y =  y + 8
+        self.data.y =  y + 7
         group.append(self.data)
 
         # XXX todo(x)
@@ -62,6 +62,7 @@ class Metric():
         if monotonic() < (self.update_last + self.update_frequency):
             return
         self.update_last = monotonic()
+        gc.collect()
         self.get_data()
         gc.collect()
 
