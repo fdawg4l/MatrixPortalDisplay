@@ -1,7 +1,7 @@
 MPY-CROSS ?= ~/Downloads/mpy-cross.static-amd64-linux-8.0.5
 DEST ?= /media/CIRCUITPY/
 
-objects = code.mpy secrets.mpy label.mpy powerwallservice.mpy style.mpy timeservice.mpy weatherservice.mpy
+objects = code.mpy secrets.mpy label.mpy powerwallservice.mpy style.mpy timeservice.mpy weatherservice.mpy button.mpy pots.mpy
 
 all: $(objects) $(DEST)/code.py
 .PHONY: all

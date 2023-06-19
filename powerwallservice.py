@@ -17,7 +17,7 @@ class Power(label.Metric):
 
     def _get_data(self):
         gc.collect()
-        return self.matrixportal.network.fetch(secrets["tesla_gw"]).json()
+        return self.matrixportal.network.fetch(secrets["tesla_gw"], timeout=3).json()
 
     def get_data(self):
         data = self._get_data()

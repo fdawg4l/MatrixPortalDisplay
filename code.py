@@ -1,12 +1,16 @@
-from displayio import Group as display_group
 from adafruit_bitmap_font import bitmap_font
 from adafruit_matrixportal.matrixportal import MatrixPortal
+from board import BUTTON_DOWN, BUTTON_UP
+from displayio import Group as display_group
 import gc
-import timeservice
-import weatherservice
-import powerwallservice
 from label import Style
+
 import style
+import timeservice
+import pots
+import weatherservice
+import button
+
 
 gc.collect()
 
@@ -29,8 +33,12 @@ class Group(display_group):
         super().__init__()
         w = weatherservice.Weather(matrixportal, weatherservice.X, weatherservice.Y, description_style, data_style, self)
         t = timeservice.Time(matrixportal, timeservice.X, timeservice.Y, description_style, data_style, self)
-        p = powerwallservice.Power(matrixportal, powerwallservice.X, powerwallservice.Y, description_style, data_style, self)
-        self.members = [w, t, p]
+        p = pots.Pots(matrixportal, pots.X, pots.Y, description_style, data_style, self)
+
+        up = button.Button(BUTTON_UP, p.toggleStartStop)
+        down = button.Button(BUTTON_DOWN, p.incrementItem)
+
+        self.members = [w, t, p, down, up]
 
     def update(self):
         for i in self.members:

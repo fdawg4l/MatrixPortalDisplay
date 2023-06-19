@@ -110,18 +110,12 @@ class Weather(label.Metric):
         return data.json()
 
     def update_scroll(self):
+        self.scroll_group.x = self.scroll_group.x - 2
 
         text_width = self.description.bounding_box[2]
-        for _ in range(text_width + 1):
-            self.scroll_group.x = self.scroll_group.x - 1
-            sleep(0.06)
-
-        # Reset position to off the screen and scroll it back into the start
-        # position
-        self.scroll_group.x = 64
-        for _ in range(self.scroll_group.x):
-            self.scroll_group.x = self.scroll_group.x - 1
-            sleep(0.06)
+        if self.scroll_group.x <= -1 * text_width:
+            self.scroll_group.x = 64
+        sleep(0.06)
 
     def update(self):
         self.update_scroll()
